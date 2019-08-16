@@ -1,0 +1,24 @@
+[package]
+name = "get-random-const"
+version = "1.0.0"
+authors = ["Douman <douman@gmx.se>"]
+description = "Simple compile-time random generator"
+readme = "README.md"
+repository = "https://github.com/DoumanAsh/get-random-const"
+license = "Apache-2.0"
+keywords = ["parser"]
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+    "README.md"
+]
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+getrandom = "0"
+quote = "1"
+proc-macro2 = "1"
+syn = { version = "1", features = ["full", "parsing", "extra-traits"] }
