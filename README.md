@@ -5,3 +5,12 @@
 [![Documentation](https://docs.rs/get-random-const/badge.svg)](https://docs.rs/crate/get-random-const/)
 
 Macro to generate random at compile time
+
+## Usage
+
+```rust
+use get_random_const::random;
+
+#[random]
+pub const CONST_RAND: usize = 0;
+```

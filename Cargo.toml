@@ -1,10 +1,11 @@
 [package]
 name = "get-random-const"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Douman <douman@gmx.se>"]
 description = "Simple compile-time random generator"
 readme = "README.md"
 repository = "https://github.com/DoumanAsh/get-random-const"
+documentation = "https://docs.rs/get-random-const/"
 license = "BSL-1.0"
 keywords = ["parser", "random", "compile-time", "macro"]
 include = [

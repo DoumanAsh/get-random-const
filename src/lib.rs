@@ -5,14 +5,19 @@
 //! ```rust
 //! use get_random_const::random;
 //!
-//! #[random]
-//! pub const RAND: i32 = 0;
 //!
 //! {
 //! #[random]
-//! static STATIC_ARRAY: [u8; 5] = [];
+//! pub const RAND: usize = 0;
+//!
 //! #[random]
-//! static STATIC_ARRAY_SIGN: [i8; 5] = [];
+//! static STATIC_ARRAY: [usize; 5] = [];
+//!
+//! #[random]
+//! static STATIC_ARRAY_SIGN: [isize; 5] = [];
+//!
+//! #[random]
+//! pub const RAND_SIGN: isize = 0;
 //! }
 //!
 //! {
@@ -96,9 +101,9 @@ fn map_array_init(path: &syn::TypeArray) -> Option<proc_macro2::TokenStream> {
     } else if ty.is_ident("i128") {
         Box::new(|| format!("{}i128", randomize::<i128>()))
     } else if ty.is_ident("usize") {
-        Box::new(|| format!("{}usize", randomize::<usize>()))
+        Box::new(|| format!("{} as usize", randomize::<usize>()))
     } else if ty.is_ident("isize") {
-        Box::new(|| format!("{}isize", randomize::<isize>()))
+        Box::new(|| format!("{} as isize", randomize::<isize>()))
     } else {
         return None
     };
@@ -160,10 +165,10 @@ fn map_path_to_init_expr(path: &syn::Path) -> Option<proc_macro2::TokenStream> {
         quote! { #res }
     } else if path.is_ident("usize") {
         let res = randomize::<usize>();
-        quote! { #res }
+        quote! { #res as usize }
     } else if path.is_ident("isize") {
         let res = randomize::<isize>();
-        quote! { #res }
+        quote! { #res as isize }
     } else {
         return None
     };
