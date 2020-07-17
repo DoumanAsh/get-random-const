@@ -11,8 +11,18 @@
 //! static RANDOM_I32: i32 = random!(i32);
 //! assert_ne!(RANDOM_I32, 0);
 //!
-//! let random_u32 = random!(u32);
-//! assert_ne!(random_u32, 0);
+//! assert_ne!(random!(u8), 0u8);
+//! assert_ne!(random!(i8), 0i8);
+//! assert_ne!(random!(u16), 0u16);
+//! assert_ne!(random!(i16), 0i16);
+//! assert_ne!(random!(u32), 0u32);
+//! assert_ne!(random!(i32), 0i32);
+//! assert_ne!(random!(u64), 0u64);
+//! assert_ne!(random!(i64), 0i64);
+//! assert_ne!(random!(u128), 0u128);
+//! assert_ne!(random!(i128), 0i128);
+//! assert_ne!(random!(usize), 0usize);
+//! assert_ne!(random!(isize), 0isize);
 //!
 //! let random_array = random!([u32;5]);
 //! assert_eq!(random_array.len(), 5);
@@ -46,40 +56,40 @@ fn randomize<T: Copy>() -> T {
 fn randomize_type(path: &str) -> Option<String> {
     let res = if path.eq_ignore_ascii_case("u8"){
         let res = randomize::<u8>();
-        format!("{}", res)
+        format!("{}u8", res)
     } else if path.eq_ignore_ascii_case("i8") {
         let res = randomize::<i8>();
-        format!("{}", res)
+        format!("{}i8", res)
     } else if path.eq_ignore_ascii_case("u16") {
         let res = randomize::<u16>();
-        format!("{}", res)
+        format!("{}u16", res)
     } else if path.eq_ignore_ascii_case("i16") {
         let res = randomize::<i16>();
-        format!("{}", res)
+        format!("{}i16", res)
     } else if path.eq_ignore_ascii_case("u32") {
         let res = randomize::<u32>();
-        format!("{}", res)
+        format!("{}u32", res)
     } else if path.eq_ignore_ascii_case("i32") {
         let res = randomize::<i32>();
-        format!("{}", res)
+        format!("{}i32", res)
     } else if path.eq_ignore_ascii_case("u64") {
         let res = randomize::<u64>();
-        format!("{}", res)
+        format!("{}u64", res)
     } else if path.eq_ignore_ascii_case("i64") {
         let res = randomize::<i64>();
-        format!("{}", res)
+        format!("{}i64", res)
     } else if path.eq_ignore_ascii_case("u128") {
         let res = randomize::<u128>();
-        format!("{}", res)
+        format!("{}u128", res)
     } else if path.eq_ignore_ascii_case("i128") {
         let res = randomize::<i128>();
-        format!("{}", res)
+        format!("{}i128", res)
     } else if path.eq_ignore_ascii_case("usize") {
         let res = randomize::<usize>();
-        format!("{}", res)
+        format!("{}usize", res)
     } else if path.eq_ignore_ascii_case("isize") {
         let res = randomize::<isize>();
-        format!("{}", res)
+        format!("{}isize", res)
     } else {
         return None
     };
