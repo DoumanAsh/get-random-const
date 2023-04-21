@@ -42,7 +42,7 @@ use proc_macro::TokenStream;
 use getrandom::getrandom;
 
 fn randomize<T: Copy>() -> T {
-    let mut val = core::mem::MaybeUninit::<T>::uninit();
+    let mut val = core::mem::MaybeUninit::<T>::zeroed();
     let slice = unsafe {
         core::slice::from_raw_parts_mut(val.as_mut_ptr() as *mut u8, core::mem::size_of::<T>())
     };
