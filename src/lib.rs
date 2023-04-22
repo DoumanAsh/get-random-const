@@ -39,15 +39,17 @@
 extern crate proc_macro;
 
 use proc_macro::TokenStream;
-use getrandom::getrandom;
+use getrandom::getrandom_uninit;
+
+use core::mem;
 
 fn randomize<T: Copy>() -> T {
-    let mut val = core::mem::MaybeUninit::<T>::zeroed();
+    let mut val = mem::MaybeUninit::<T>::uninit();
     let slice = unsafe {
-        core::slice::from_raw_parts_mut(val.as_mut_ptr() as *mut u8, core::mem::size_of::<T>())
+        core::slice::from_raw_parts_mut(val.as_mut_ptr() as *mut mem::MaybeUninit<u8>, core::mem::size_of::<T>())
     };
 
-    getrandom(slice).expect("Failed to generate random number");
+    getrandom_uninit(slice).expect("Failed to generate random number");
     unsafe {
         val.assume_init()
     }

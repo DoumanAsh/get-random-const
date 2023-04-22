@@ -1,6 +1,6 @@
 [package]
 name = "get-random-const"
-version = "2.0.2"
+version = "2.0.3"
 authors = ["Douman <douman@gmx.se>"]
 description = "Simple compile-time random generator"
 readme = "README.md"
@@ -19,4 +19,4 @@ edition = "2018"
 proc-macro = true
 
 [dependencies]
-getrandom = "0"
+getrandom = "0.2.9"
