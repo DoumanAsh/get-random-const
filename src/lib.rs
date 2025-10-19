@@ -39,7 +39,6 @@
 extern crate proc_macro;
 
 use proc_macro::TokenStream;
-use getrandom::getrandom_uninit;
 
 use core::mem;
 
@@ -49,7 +48,7 @@ fn randomize<T: Copy>() -> T {
         core::slice::from_raw_parts_mut(val.as_mut_ptr() as *mut mem::MaybeUninit<u8>, core::mem::size_of::<T>())
     };
 
-    getrandom_uninit(slice).expect("Failed to generate random number");
+    getrandom::fill_uninit(slice).expect("Failed to generate random number");
     unsafe {
         val.assume_init()
     }
@@ -138,7 +137,7 @@ pub fn random(input: TokenStream) -> TokenStream {
 
         result.parse().unwrap()
     } else if let Some(result) = randomize_type(input) {
-        return result.parse().unwrap()
+        result.parse().unwrap()
     } else {
         panic!("Unsupported type");
     }
